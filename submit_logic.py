@@ -73,7 +73,7 @@ def submit_mmsk(sg, la, mi, s, k):
         s = int(s)
         k = int(k)
     except (ValueError):
-        sg.Print("Error de casteo. Lambda y Miu deben ser enteros o flotantes. Servidores y Capacidad debe ser entero.", text_color="red")
+        sg.Print("Error de casteo. Lambda y Miu deben ser enteros o flotantes. Servidores y Capacidad deben ser enteros.", text_color="red")
         return
 
     if la <= 0:
@@ -126,6 +126,39 @@ def submit_mg1(sg, la, mi, sig):
         l, lq, w, wq = mg1(la, mi, sig)
         result = f"L:{l}\nLq:{lq}\nW:{w}\nWq:{wq}"
         sg.Print("Resultado de la simulacion M/G/1")
+        sg.Print(result, text_color="green")
+    else:
+        sg.Print("Error en los inputs:", text_color="red")
+        sg.Print(incorrectInputs, text_color="red")
+
+
+def submit_mek1(sg, la, mi, k):
+
+    inputsAreValid = True
+    incorrectInputs = ""
+
+    try:
+        la = float(la)
+        mi = float(mi)
+        k = int(k)
+    except (ValueError):
+        sg.Print("Error de casteo. Lambda y Miu deben ser enteros o flotantes. Capacidad debe ser entero.", text_color="red")
+        return
+
+    if la <= 0:
+        inputsAreValid = False
+        incorrectInputs += "* Lambda no puede ser negativo ni cero\n"
+    if mi <= 0:
+        inputsAreValid = False
+        incorrectInputs += "* Miu no puede ser negativo ni cero\n"
+    if k <= 0:
+        inputsAreValid = False
+        incorrectInputs += "* Capacidad no puede ser negativo ni cero\n"
+
+    if inputsAreValid:
+        l, lq, w, wq = mek1(la, mi, k)
+        result = f"L:{l}\nLq:{lq}\nW:{w}\nWq:{wq}"
+        sg.Print("Resultado de la simulacion M/M/s/k")
         sg.Print(result, text_color="green")
     else:
         sg.Print("Error en los inputs:", text_color="red")
