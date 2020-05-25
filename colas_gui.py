@@ -6,6 +6,15 @@ sigma_text = u"\u03C3"
 lambda_text = u"\u03BB"
 miu_text = u"\u03BC"
 
+
+def FText(text):  # Defines a justified text
+    return sg.Text(text, justification="right", size=(12, 1))
+
+
+def FButton(event_name):
+    return sg.Button(event_name)
+
+
 # Defines the window theme
 sg.theme('Reddit')
 
@@ -14,9 +23,9 @@ LAMBDA_1 = "1_input_1"
 MIU_1 = "1_input_2"
 SUBMIT_1 = "Simular M/M/1"
 
-mm1_layout = [[sg.Text(f"Lambda ({lambda_text})"), sg.In(key=LAMBDA_1)],
-              [sg.Text(f"Miu ({miu_text})"), sg.In(key=MIU_1)],
-              [sg.Button(SUBMIT_1)]
+mm1_layout = [[FText(f"Lambda ({lambda_text})"), sg.In(key=LAMBDA_1)],
+              [FText(f"Miu ({miu_text})"), sg.In(key=MIU_1)],
+              [FButton(SUBMIT_1)]
               ]
 
 # Tab M/M/s
@@ -25,10 +34,10 @@ MIU_2 = "2_input_2"
 SERVERS_2 = "2_input_3"
 SUBMIT_2 = "Simular M/M/s"
 
-mms_layout = [[sg.Text(f"Lambda ({lambda_text})"), sg.In(key=LAMBDA_2)],
-              [sg.Text(f"Miu ({miu_text})"), sg.In(key=MIU_2)],
-              [sg.Text("Servidores (s)"), sg.In(key=SERVERS_2)],
-              [sg.Button(SUBMIT_2)]
+mms_layout = [[FText(f"Lambda ({lambda_text})"), sg.In(key=LAMBDA_2)],
+              [FText(f"Miu ({miu_text})"), sg.In(key=MIU_2)],
+              [FText("Servidores (s)"), sg.In(key=SERVERS_2)],
+              [FButton(SUBMIT_2)]
               ]
 
 # Tab M/M/s
@@ -38,11 +47,11 @@ SERVERS_3 = "3_input_3"
 CAPACITY_3 = "3_input_4"
 SUBMIT_3 = "Simular M/M/s/k"
 
-mmsk_layout = [[sg.Text(f"Lambda ({lambda_text})"), sg.In(key=LAMBDA_3)],
-               [sg.Text(f"Miu ({miu_text})"), sg.In(key=MIU_3)],
-               [sg.Text("Servidores (s)"), sg.In(key=SERVERS_3)],
-               [sg.Text("Capacidad (k)"), sg.In(key=CAPACITY_3)],
-               [sg.Button(SUBMIT_3)]
+mmsk_layout = [[FText(f"Lambda ({lambda_text})"), sg.In(key=LAMBDA_3)],
+               [FText(f"Miu ({miu_text})"), sg.In(key=MIU_3)],
+               [FText("Servidores (s)"), sg.In(key=SERVERS_3)],
+               [FText("Capacidad (k)"), sg.In(key=CAPACITY_3)],
+               [FButton(SUBMIT_3)]
                ]
 
 # Tab M/G/1
@@ -50,10 +59,10 @@ LAMBDA_4 = "4_input_1"
 MIU_4 = "4_input_2"
 SIGMA_4 = "4_input_4"
 SUBMIT_4 = "Simular M/G/1"
-mg1_layout = [[sg.Text(f"Lambda ({lambda_text})"), sg.In(key=LAMBDA_4)],
-              [sg.Text(f"Miu ({miu_text})"), sg.In(key=MIU_4)],
-              [sg.Text(f"Sigma ({sigma_text})"), sg.In(key=SIGMA_4)],
-              [sg.Button(SUBMIT_4)]
+mg1_layout = [[FText(f"Lambda ({lambda_text})"), sg.In(key=LAMBDA_4)],
+              [FText(f"Miu ({miu_text})"), sg.In(key=MIU_4)],
+              [FText(f"Sigma ({sigma_text})"), sg.In(key=SIGMA_4)],
+              [FButton(SUBMIT_4)]
               ]
 
 # Tab M/M/s
@@ -62,10 +71,10 @@ MIU_5 = "5_input_2"
 CAPACITY_5 = "5_input_3"
 SUBMIT_5 = "Simular M/Ek/1"
 
-mek1_layout = [[sg.Text(f"Lambda ({lambda_text})"), sg.In(key=LAMBDA_5)],
-               [sg.Text(f"Miu ({miu_text})"), sg.In(key=MIU_5)],
-               [sg.Text("Capacidad (k)"), sg.In(key=CAPACITY_5)],
-               [sg.Button(SUBMIT_5)]
+mek1_layout = [[FText(f"Lambda ({lambda_text})"), sg.In(key=LAMBDA_5)],
+               [FText(f"Miu ({miu_text})"), sg.In(key=MIU_5)],
+               [FText("Capacidad (k)"), sg.In(key=CAPACITY_5)],
+               [FButton(SUBMIT_5)]
                ]
 
 
@@ -79,7 +88,7 @@ general_layout = [[sg.TabGroup([[
     sg.Tab("M/Ek/1", mek1_layout),
 ]])]]
 
-window = sg.Window("Metodos cuantitativos y simulacion - Proyecto 2", general_layout)
+window = sg.Window("Metodos cuantitativos y simulacion - Proyecto 2", general_layout, element_padding=(15, 5), default_element_size=(35, 1))
 
 # Event Loop to process "events"
 if __name__ == '__main__':
