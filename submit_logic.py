@@ -1,6 +1,18 @@
 from colas_simulator import mms, mm1, mmsk, mg1, mek1
 
 
+def are_invalid(la, mi, s):
+    if la >= s*mi:
+        return True
+    return False
+
+
+def are_invalid_2(la, mi):
+    if la >= mi:
+        return True
+    return False
+
+
 def submit_mms(sg, la, mi, s):
     inputsAreValid = True
     incorrectInputs = ""
@@ -13,6 +25,9 @@ def submit_mms(sg, la, mi, s):
         sg.Print("Error de casteo. Lambda y Miu deben ser enteros o flotantes. Servidores debe ser entero.", text_color="red")
         return
 
+    if are_invalid(la, mi, s):
+        inputsAreValid = False
+        incorrectInputs += "* Lambda no puede ser mayor o igual a s*Miu\n"
     if la <= 0:
         inputsAreValid = False
         incorrectInputs += "* Lambda no puede ser negativo ni cero\n"
@@ -37,14 +52,17 @@ def submit_mm1(sg, la, mi):
 
     inputsAreValid = True
     incorrectInputs = ""
-
     try:
         la = float(la)
         mi = float(mi)
+        s = 1
     except (ValueError):
         sg.Print("Error de casteo. Lambda y Miu deben ser enteros o flotantes.", text_color="red")
         return
 
+    if are_invalid(la, mi, s):
+        inputsAreValid = False
+        incorrectInputs += "* Lambda no puede ser mayor o igual a Miu\n"
     if la <= 0:
         inputsAreValid = False
         incorrectInputs += "* Lambda no puede ser negativo ni cero\n"
@@ -76,6 +94,9 @@ def submit_mmsk(sg, la, mi, s, k):
         sg.Print("Error de casteo. Lambda y Miu deben ser enteros o flotantes. Servidores y Capacidad deben ser enteros.", text_color="red")
         return
 
+    if are_invalid(la, mi, s):
+        inputsAreValid = False
+        incorrectInputs += "* Lambda no puede ser mayor o igual a s*Miu\n"
     if la <= 0:
         inputsAreValid = False
         incorrectInputs += "* Lambda no puede ser negativo ni cero\n"
@@ -112,6 +133,9 @@ def submit_mg1(sg, la, mi, sig):
         sg.Print("Error de casteo. Lambda, Miu y Sigma deben ser enteros o flotantes", text_color="red")
         return
 
+    if are_invalid_2(la, mi):
+        inputsAreValid = False
+        incorrectInputs += "* Lambda no puede ser mayor o igual a Miu\n"
     if la <= 0:
         inputsAreValid = False
         incorrectInputs += "* Lambda no puede ser negativo ni cero\n"
@@ -145,6 +169,9 @@ def submit_mek1(sg, la, mi, k):
         sg.Print("Error de casteo. Lambda y Miu deben ser enteros o flotantes. Capacidad debe ser entero.", text_color="red")
         return
 
+    if are_invalid_2(la, mi):
+        inputsAreValid = False
+        incorrectInputs += "* Lambda no puede ser mayor o igual a Miu\n"
     if la <= 0:
         inputsAreValid = False
         incorrectInputs += "* Lambda no puede ser negativo ni cero\n"
