@@ -26,8 +26,6 @@ Final project for 'Métodos Cuantitativos y Simulación' course @ Tecnológico d
 
 ## Screenshots
 
-- Input example
-  ![image](https://user-images.githubusercontent.com/26470569/82829724-95391900-9e79-11ea-98db-d07ee2dd70a0.png)
+![example input](https://user-images.githubusercontent.com/26470569/82829724-95391900-9e79-11ea-98db-d07ee2dd70a0.png)
 
-- Output from the example
-  ![image](https://user-images.githubusercontent.com/26470569/82829777-b39f1480-9e79-11ea-8dd6-8f5b85f56c04.png)
+![example output](https://user-images.githubusercontent.com/26470569/82829777-b39f1480-9e79-11ea-8dd6-8f5b85f56c04.png)
