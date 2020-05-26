@@ -112,7 +112,7 @@ def submit_mmsk(window, sg, la, mi, s, k):
 
     if inputsAreValid:
         lae, l, lq, w, wq = mmsk(la, mi, s, k)
-        result = f"λe:{lae}\nL:\t{l} ({float(l)})\nLq:\t{lq} ({float(lq)})\nW:\t{w} ({float(w)})\nWq:\t{wq} ({float(wq)})"
+        result = f"λe:\t{lae} ({float(lae)})\nL:\t{l} ({float(l)})\nLq:\t{lq} ({float(lq)})\nW:\t{w} ({float(w)})\nWq:\t{wq} ({float(wq)})"
         window["print_output"].print("Resultado de la simulacion M/M/s/k")
         window["print_output"].print(result, text_color="green")
     else:
