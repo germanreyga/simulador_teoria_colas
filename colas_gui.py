@@ -86,7 +86,7 @@ general_layout = [[sg.TabGroup([[
     sg.Tab("M/M/s/k", mmsk_layout),
     sg.Tab("M/G/1", mg1_layout),
     sg.Tab("M/Ek/1", mek1_layout),
-]])]]
+]]), sg.Multiline(size=(40, 10), key="print_output", do_not_clear=False, font=("Consolas", 16))]]
 
 window = sg.Window("Metodos cuantitativos y simulacion - Proyecto 2", general_layout, element_padding=(15, 5), default_element_size=(35, 1))
 
@@ -97,14 +97,14 @@ if __name__ == '__main__':
         if event in (None, "Cancel"):
             break
         if event == SUBMIT_1:
-            submit_mm1(sg=sg, la=values[LAMBDA_1], mi=values[MIU_1])
+            submit_mm1(window=window, sg=sg, la=values[LAMBDA_1], mi=values[MIU_1])
         if event == SUBMIT_2:
-            submit_mms(sg=sg, la=values[LAMBDA_2], mi=values[MIU_2], s=values[SERVERS_2])
+            submit_mms(window=window, sg=sg, la=values[LAMBDA_2], mi=values[MIU_2], s=values[SERVERS_2])
         if event == SUBMIT_3:
-            submit_mmsk(sg=sg, la=values[LAMBDA_3], mi=values[MIU_3], s=values[SERVERS_3], k=values[CAPACITY_3])
+            submit_mmsk(window=window, sg=sg, la=values[LAMBDA_3], mi=values[MIU_3], s=values[SERVERS_3], k=values[CAPACITY_3])
         if event == SUBMIT_4:
-            submit_mg1(sg=sg, la=values[LAMBDA_4], mi=values[MIU_4], sig=values[SIGMA_4])
+            submit_mg1(window=window, sg=sg, la=values[LAMBDA_4], mi=values[MIU_4], sig=values[SIGMA_4])
         if event == SUBMIT_5:
-            submit_mek1(sg=sg, la=values[LAMBDA_5], mi=values[MIU_5], k=values[CAPACITY_5])
+            submit_mek1(window=window, sg=sg, la=values[LAMBDA_5], mi=values[MIU_5], k=values[CAPACITY_5])
 
     window.close()

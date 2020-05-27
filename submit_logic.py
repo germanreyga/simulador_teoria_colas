@@ -1,7 +1,19 @@
 from colas_simulator import mms, mm1, mmsk, mg1, mek1
 
 
-def submit_mms(sg, la, mi, s):
+def are_invalid(la, mi, s):
+    if la >= s*mi:
+        return True
+    return False
+
+
+def are_invalid_2(la, mi):
+    if la >= mi:
+        return True
+    return False
+
+
+def submit_mms(window, sg, la, mi, s):
     inputsAreValid = True
     incorrectInputs = ""
 
@@ -10,9 +22,12 @@ def submit_mms(sg, la, mi, s):
         mi = float(mi)
         s = int(s)
     except (ValueError):
-        sg.Print("Error de casteo. Lambda y Miu deben ser enteros o flotantes. Servidores debe ser entero.", text_color="red")
+        window["print_output"].print("Error de casteo. Lambda y Miu deben ser enteros o flotantes. Servidores debe ser entero.", text_color="red")
         return
 
+    if are_invalid(la, mi, s):
+        inputsAreValid = False
+        incorrectInputs += "* Lambda no puede ser mayor o igual a s*Miu\n"
     if la <= 0:
         inputsAreValid = False
         incorrectInputs += "* Lambda no puede ser negativo ni cero\n"
@@ -25,26 +40,29 @@ def submit_mms(sg, la, mi, s):
 
     if inputsAreValid:
         l, lq, w, wq = mms(la, mi, s)
-        result = f"L:{l}\nLq:{lq}\nW:{w}\nWq:{wq}"
-        sg.Print("Resultado de la simulacion M/M/s")
-        sg.Print(result, text_color="green")
+        result = f"L:\t{l} ({float(l)})\nLq:\t{lq} ({float(lq)})\nW:\t{w} ({float(w)})\nWq:\t{wq} ({float(wq)})"
+        window["print_output"].print("Resultado de la simulacion M/M/s")
+        window["print_output"].print(result, text_color="green")
     else:
-        sg.Print("Error en los inputs:", text_color="red")
-        sg.Print(incorrectInputs, text_color="red")
+        window["print_output"].print("Error en los inputs:", text_color="red")
+        window["print_output"].print(incorrectInputs, text_color="red")
 
 
-def submit_mm1(sg, la, mi):
+def submit_mm1(window, sg, la, mi):
 
     inputsAreValid = True
     incorrectInputs = ""
-
     try:
         la = float(la)
         mi = float(mi)
+        s = 1
     except (ValueError):
-        sg.Print("Error de casteo. Lambda y Miu deben ser enteros o flotantes.", text_color="red")
+        window["print_output"].print("Error de casteo. Lambda y Miu deben ser enteros o flotantes.", text_color="red")
         return
 
+    if are_invalid(la, mi, s):
+        inputsAreValid = False
+        incorrectInputs += "* Lambda no puede ser mayor o igual a Miu\n"
     if la <= 0:
         inputsAreValid = False
         incorrectInputs += "* Lambda no puede ser negativo ni cero\n"
@@ -54,15 +72,15 @@ def submit_mm1(sg, la, mi):
 
     if inputsAreValid:
         l, lq, w, wq = mm1(la, mi)
-        result = f"L:{l}\nLq:{lq}\nW:{w}\nWq:{wq}"
-        sg.Print("Resultado de la simulacion M/M/1")
-        sg.Print(result, text_color="green")
+        result = f"L:\t{l} ({float(l)})\nLq:\t{lq} ({float(lq)})\nW:\t{w} ({float(w)})\nWq:\t{wq} ({float(wq)})"
+        window["print_output"].print("Resultado de la simulacion M/M/1")
+        window["print_output"].print(result, text_color="green")
     else:
-        sg.Print("Error en los inputs:", text_color="red")
-        sg.Print(incorrectInputs, text_color="red")
+        window["print_output"].print("Error en los inputs:", text_color="red")
+        window["print_output"].print(incorrectInputs, text_color="red")
 
 
-def submit_mmsk(sg, la, mi, s, k):
+def submit_mmsk(window, sg, la, mi, s, k):
 
     inputsAreValid = True
     incorrectInputs = ""
@@ -73,9 +91,12 @@ def submit_mmsk(sg, la, mi, s, k):
         s = int(s)
         k = int(k)
     except (ValueError):
-        sg.Print("Error de casteo. Lambda y Miu deben ser enteros o flotantes. Servidores y Capacidad deben ser enteros.", text_color="red")
+        window["print_output"].print("Error de casteo. Lambda y Miu deben ser enteros o flotantes. Servidores y Capacidad deben ser enteros.", text_color="red")
         return
 
+    if are_invalid(la, mi, s):
+        inputsAreValid = False
+        incorrectInputs += "* Lambda no puede ser mayor o igual a s*Miu\n"
     if la <= 0:
         inputsAreValid = False
         incorrectInputs += "* Lambda no puede ser negativo ni cero\n"
@@ -91,15 +112,15 @@ def submit_mmsk(sg, la, mi, s, k):
 
     if inputsAreValid:
         lae, l, lq, w, wq = mmsk(la, mi, s, k)
-        result = f"λe:{lae}\nL:{l}\nLq:{lq}\nW:{w}\nWq:{wq}"
-        sg.Print("Resultado de la simulacion M/M/s/k")
-        sg.Print(result, text_color="green")
+        result = f"λe:\t{lae} ({float(lae)})\nL:\t{l} ({float(l)})\nLq:\t{lq} ({float(lq)})\nW:\t{w} ({float(w)})\nWq:\t{wq} ({float(wq)})"
+        window["print_output"].print("Resultado de la simulacion M/M/s/k")
+        window["print_output"].print(result, text_color="green")
     else:
-        sg.Print("Error en los inputs:", text_color="red")
-        sg.Print(incorrectInputs, text_color="red")
+        window["print_output"].print("Error en los inputs:", text_color="red")
+        window["print_output"].print(incorrectInputs, text_color="red")
 
 
-def submit_mg1(sg, la, mi, sig):
+def submit_mg1(window, sg, la, mi, sig):
 
     inputsAreValid = True
     incorrectInputs = ""
@@ -109,9 +130,12 @@ def submit_mg1(sg, la, mi, sig):
         mi = float(mi)
         sig = float(sig)
     except (ValueError):
-        sg.Print("Error de casteo. Lambda, Miu y Sigma deben ser enteros o flotantes", text_color="red")
+        window["print_output"].print("Error de casteo. Lambda, Miu y Sigma deben ser enteros o flotantes", text_color="red")
         return
 
+    if are_invalid_2(la, mi):
+        inputsAreValid = False
+        incorrectInputs += "* Lambda no puede ser mayor o igual a Miu\n"
     if la <= 0:
         inputsAreValid = False
         incorrectInputs += "* Lambda no puede ser negativo ni cero\n"
@@ -124,15 +148,15 @@ def submit_mg1(sg, la, mi, sig):
 
     if inputsAreValid:
         l, lq, w, wq = mg1(la, mi, sig)
-        result = f"L:{l}\nLq:{lq}\nW:{w}\nWq:{wq}"
-        sg.Print("Resultado de la simulacion M/G/1")
-        sg.Print(result, text_color="green")
+        result = f"L:\t{l} ({float(l)})\nLq:\t{lq} ({float(lq)})\nW:\t{w} ({float(w)})\nWq:\t{wq} ({float(wq)})"
+        window["print_output"].print("Resultado de la simulacion M/G/1")
+        window["print_output"].print(result, text_color="green")
     else:
-        sg.Print("Error en los inputs:", text_color="red")
-        sg.Print(incorrectInputs, text_color="red")
+        window["print_output"].print("Error en los inputs:", text_color="red")
+        window["print_output"].print(incorrectInputs, text_color="red")
 
 
-def submit_mek1(sg, la, mi, k):
+def submit_mek1(window, sg, la, mi, k):
 
     inputsAreValid = True
     incorrectInputs = ""
@@ -142,9 +166,12 @@ def submit_mek1(sg, la, mi, k):
         mi = float(mi)
         k = int(k)
     except (ValueError):
-        sg.Print("Error de casteo. Lambda y Miu deben ser enteros o flotantes. Capacidad debe ser entero.", text_color="red")
+        window["print_output"].print("Error de casteo. Lambda y Miu deben ser enteros o flotantes. Capacidad debe ser entero.", text_color="red")
         return
 
+    if are_invalid_2(la, mi):
+        inputsAreValid = False
+        incorrectInputs += "* Lambda no puede ser mayor o igual a Miu\n"
     if la <= 0:
         inputsAreValid = False
         incorrectInputs += "* Lambda no puede ser negativo ni cero\n"
@@ -157,9 +184,9 @@ def submit_mek1(sg, la, mi, k):
 
     if inputsAreValid:
         l, lq, w, wq = mek1(la, mi, k)
-        result = f"L:{l}\nLq:{lq}\nW:{w}\nWq:{wq}"
-        sg.Print("Resultado de la simulacion M/M/s/k")
-        sg.Print(result, text_color="green")
+        result = f"L:\t{l} ({float(l)})\nLq:\t{lq} ({float(lq)})\nW:\t{w} ({float(w)})\nWq:\t{wq} ({float(wq)})"
+        window["print_output"].print("Resultado de la simulacion M/M/s/k")
+        window["print_output"].print(result, text_color="green")
     else:
-        sg.Print("Error en los inputs:", text_color="red")
-        sg.Print(incorrectInputs, text_color="red")
+        window["print_output"].print("Error en los inputs:", text_color="red")
+        window["print_output"].print(incorrectInputs, text_color="red")
