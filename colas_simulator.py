@@ -3,7 +3,6 @@ from fractions import Fraction as frac
 
 # M/M/S
 
-
 def mms(la, mi, s):
     la = frac(str(la))
     mi = frac(str(mi))
@@ -28,16 +27,16 @@ def mms(la, mi, s):
     wq = frac(lq, la)
     w = wq + frac(1, mi)
 
-    return l, lq, w, wq
+    return l, lq, w, wq, rho
+
 
 # M/M/1
-
 
 def mm1(la, mi):
     return mms(la, mi, 1)
 
-# M/M/s/K
 
+# M/M/s/K
 
 def mmsk(la, mi, s, k):
     la = frac(str(la))
@@ -71,10 +70,10 @@ def mmsk(la, mi, s, k):
     w = wq + frac(1, mi)
     l = lae * w
 
-    return lae, l, lq, w, wq
+    return lae, l, lq, w, wq, rho
+
 
 # M/G/1
-
 
 def mg1(la, mi, sig):
     la = frac(str(la))
@@ -94,19 +93,27 @@ def mg1(la, mi, sig):
     wq = frac(lq, la)
     w = wq + frac(1, mi)
 
-    return l, lq, w, wq
+    return l, lq, w, wq, rho
+
 
 # M/Ek/1
-
 
 def mek1(la, mi, k):
     la = frac(str(la))
     mi = frac(str(mi))
     k = frac(str(k))
+    
+    rho = frac(la, mi)
 
     lq = frac((la**2)*(1+k), 2*k*mi*(mi-la))
     wq = frac(lq, la)
     w = wq + frac(1, mi)
     l = la * w
 
-    return l, lq, w, wq
+    return l, lq, w, wq, rho
+    
+    
+# Total Costs
+
+def total_cost(lq, cw, s, cs):
+    return float(lq*cw + s*cs)
