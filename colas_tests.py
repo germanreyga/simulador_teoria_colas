@@ -7,8 +7,6 @@ mi = 30
 l, lq, w, wq, rho = mm1(la, mi)
 print("l:", l, ", lq:", lq, ", w:", w, ", wq:", wq)
 print("l:", float(l), ", lq:", float(lq), ", w:", float(w), ", wq:", float(wq))
-print("ROUND", round(float(wq), 2))
-
 
 # Test M/M/s
 la = 40

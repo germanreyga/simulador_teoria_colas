@@ -16,6 +16,7 @@ Final project for 'Métodos Cuantitativos y Simulación' course @ Tecnológico d
 1. L = average number of clients in a queue in a given system
 1. W = E[T] = average waiting time for a client in a given system
 1. Wq = E[Tq] = average waiting time for a client in the queue in a given system
+1. Total service cost (\$) for the given system
 
 ## Authors
 
@@ -26,4 +27,4 @@ Final project for 'Métodos Cuantitativos y Simulación' course @ Tecnológico d
 
 ## Screenshots
 
-![test](https://user-images.githubusercontent.com/26470569/82935558-d8b38600-9f52-11ea-8f93-cf9b4c81c34b.png)
+![test](https://user-images.githubusercontent.com/26470569/83058929-bbe48480-a01e-11ea-82d2-50bfa91f4e1c.png)
