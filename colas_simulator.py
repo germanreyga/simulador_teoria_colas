@@ -3,6 +3,7 @@ from fractions import Fraction as frac
 
 # M/M/S
 
+
 def mms(la, mi, s):
     la = frac(str(la))
     mi = frac(str(mi))
@@ -102,7 +103,7 @@ def mek1(la, mi, k):
     la = frac(str(la))
     mi = frac(str(mi))
     k = frac(str(k))
-    
+
     rho = frac(la, mi)
 
     lq = frac((la**2)*(1+k), 2*k*mi*(mi-la))
@@ -111,8 +112,8 @@ def mek1(la, mi, k):
     l = la * w
 
     return l, lq, w, wq, rho
-    
-    
+
+
 # Total Costs
 
 def total_cost(lq, cw, s, cs):
